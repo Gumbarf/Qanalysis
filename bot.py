@@ -51,4 +51,4 @@ async def sentiment(ctx):
         average_polarity = total_polarity / message_count
         average_subjectivity = total_subjectivity / message_count
         await ctx.send(f"The average sentiment of the last 10 days on the server is {average_polarity:.2f} (polarity) and {average_subjectivity:.2f} (subjectivity).")
-bot.run('MTA5MDI2NTY0NzMxMDcyMTE2Ng.GbWl9n.OcuUeN2kI0STXwQfjTUmWbUWxUStIghXcXQxSo')
+bot.run('YOURTOKEN')
