@@ -5,3 +5,5 @@ This project is a Discord bot created using Python that performs sentiment analy
 In TextBlob, polarity is a measure of how positive or negative a given text is. It is a float number between -1.0 and 1.0 where -1.0 is extremely negative and 1.0 is extremely positive.
 
 Subjectivity, on the other hand, is a measure of how much the text is expressing a personal opinion or a factual information. It is also a float number between 0.0 and 1.0, where 0.0 is very objective and 1.0 is very subjective.
+
+To edit the bot you just need to change the role ID for you Admin and the roles you want to whitelist from the sentiment analysis, and the Token App. 
