@@ -13,7 +13,7 @@ async def on_ready():
     print(f'Logged in as {bot.user.name} ({bot.user.id})')
 
 @bot.command()
-async def sentiment(ctx):
+async def sentiment(ctx, start_date_str: str, end_date_str: str):
     # Check if the user has the admin role
     admin_role_id = 1083737606778527744
     admin_role = discord.utils.get(ctx.guild.roles, id=admin_role_id)
@@ -25,12 +25,12 @@ async def sentiment(ctx):
     channels_to_exclude = [1083737606778527744, 2222227606778527744]  # role IDs to exclude
     channels = [channel for channel in ctx.guild.channels if channel.type == discord.ChannelType.text and channel.id not in channels_to_exclude]
 
-    # Calculate the start and end dates
-    end_date = datetime.utcnow()
-    start_date = end_date - timedelta(days=10)
+    # Parse the start and end dates
+    start_date = datetime.strptime(start_date_str, '%Y-%m-%d')
+    end_date = datetime.strptime(end_date_str, '%Y-%m-%d') + timedelta(days=1)
 
     # Display a message indicating that the bot is working
-    await ctx.send("I'm calculating the average of the past 10 days.")
+    await ctx.send(f"I'm calculating the average sentiment between {start_date.strftime('%Y-%m-%d')} and {end_date.strftime('%Y-%m-%d')}.")
 
     # Iterate through all the channels and calculate the sentiment
     total_polarity = 0
@@ -46,9 +46,9 @@ async def sentiment(ctx):
 
     # Calculate the average sentiment
     if message_count == 0:
-        await ctx.send("No messages found in the past 10 days.")
+        await ctx.send(f"No messages found between {start_date.strftime('%Y-%m-%d')} and {end_date.strftime('%Y-%m-%d')}.")
     else:
         average_polarity = total_polarity / message_count
         average_subjectivity = total_subjectivity / message_count
-        await ctx.send(f"The average sentiment of the last 10 days on the server is {average_polarity:.2f} (polarity) and {average_subjectivity:.2f} (subjectivity).")
+        await ctx.send(f"The average sentiment between {start_date.strftime('%Y-%m-%d')} and {end_date.strftime('%Y-%m-%d')} is {average_polarity:.2f} (polarity) and {average_subjectivity:.2f} (subjectivity).")
 bot.run('YOURTOKEN')
