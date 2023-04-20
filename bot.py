@@ -50,5 +50,5 @@ async def sentiment(ctx, start_date_str: str, end_date_str: str):
     else:
         average_polarity = total_polarity / message_count
         average_subjectivity = total_subjectivity / message_count
-        await ctx.send(f"The average sentiment between {start_date.strftime('%Y-%m-%d')} and {end_date.strftime('%Y-%m-%d')} is {average_polarity:.2f} (polarity) and {average_subjectivity:.2f} (subjectivity).")
+        await ctx.send(f"The average sentiment between {start_date.strftime('%Y-%m-%d')} and {end_date.strftime('%Y-%m-%d')} is {average_polarity:.2f} (polarity) and {average_subjectivity:.2f} (subjectivity) out of {message_count} messages.")
 bot.run('YOURTOKEN')
